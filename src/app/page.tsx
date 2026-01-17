@@ -2,16 +2,18 @@ import { ItemCard } from "@/components/item-card";
 import { ItemFilters } from "@/components/item-filters";
 import { PersonalizedItems } from "@/components/personalized-items";
 import { getItems, getUsers } from "@/lib/data";
-import type { Item } from "@/lib/types";
+import type { ItemWithSeller } from "@/lib/types";
 
 export default async function Home() {
   const allItems = await getItems();
   const users = await getUsers();
 
-  const itemsWithSeller = allItems.map((item) => ({
-    ...item,
-    seller: users.find((user) => user.id === item.sellerId),
-  }));
+  const itemsWithSeller = allItems
+    .map((item) => ({
+      ...item,
+      seller: users.find((user) => user.id === item.sellerId),
+    }))
+    .filter((item): item is ItemWithSeller => Boolean(item.seller));
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -26,7 +28,7 @@ export default async function Home() {
 
       <ItemFilters />
 
-      <PersonalizedItems allItems={itemsWithSeller as (Item & { seller: any })[]} />
+      <PersonalizedItems allItems={itemsWithSeller} />
 
       <section aria-labelledby="all-items-heading">
         <div className="flex items-center justify-between mb-4">

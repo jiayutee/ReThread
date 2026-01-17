@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MapPin, ShieldCheck } from "lucide-react";
-import { getUser, getItemsBySeller, getUsers } from "@/lib/data";
+import { getUser, getItemsBySeller } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import type { ImageMap, User } from "@/lib/types";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -13,9 +13,8 @@ export default async function UserProfilePage({ params }: { params: { username: 
   if (!user) {
     notFound();
   }
-  const allUsers = await getUsers();
   const items = await getItemsBySeller(user.id);
-  const itemsWithSeller = items.map(item => ({ ...item, seller: allUsers.find(u => u.id === item.sellerId) as User }));
+  const itemsWithSeller = items.map(item => ({ ...item, seller: user }));
 
   const imageMap = PlaceHolderImages.reduce((acc, img) => {
     acc[img.id] = img;

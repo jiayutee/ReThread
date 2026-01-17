@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -48,23 +49,31 @@ export function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <User className="mr-2 h-4 w-4" />
-            <span>Profile</span>
+          <DropdownMenuItem asChild>
+            <Link href="/JaneDoe">
+              <User className="mr-2 h-4 w-4" />
+              <span>Profile</span>
+            </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Settings className="mr-2 h-4 w-4" />
-            <span>Settings</span>
+          <DropdownMenuItem asChild>
+            <Link href="#">
+              <Settings className="mr-2 h-4 w-4" />
+              <span>Settings</span>
+            </Link>
           </DropdownMenuItem>
-           <DropdownMenuItem>
-            <LifeBuoy className="mr-2 h-4 w-4" />
-            <span>Support</span>
+           <DropdownMenuItem asChild>
+            <Link href="#">
+              <LifeBuoy className="mr-2 h-4 w-4" />
+              <span>Support</span>
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <LogOut className="mr-2 h-4 w-4" />
-          <span>Log out</span>
+        <DropdownMenuItem asChild>
+          <Link href="#">
+            <LogOut className="mr-2 h-4 w-4" />
+            <span>Log out</span>
+          </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

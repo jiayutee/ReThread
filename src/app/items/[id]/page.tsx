@@ -2,9 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
-  MessageSquare,
-  Heart,
-  Share2,
   Tag,
   MapPin,
   ShieldCheck,
@@ -35,6 +32,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { ItemActions } from "@/components/item-actions";
 
 export default async function ItemPage({ params }: { params: { id: string } }) {
   const item = await getItem(params.id);
@@ -77,20 +75,7 @@ export default async function ItemPage({ params }: { params: { id: string } }) {
             {item.priceType === "Fixed" ? `$${item.price.toFixed(2)}` : item.priceType}
           </div>
 
-          <div className="flex items-center space-x-4 mb-6">
-            <Button size="lg" className="flex-1">
-              <MessageSquare className="mr-2 h-5 w-5" />
-              Contact Seller
-            </Button>
-            <Button variant="outline" size="icon">
-              <Heart className="h-5 w-5" />
-              <span className="sr-only">Favorite</span>
-            </Button>
-            <Button variant="outline" size="icon">
-              <Share2 className="h-5 w-5" />
-              <span className="sr-only">Share</span>
-            </Button>
-          </div>
+          <ItemActions />
 
           <Separator className="my-6"/>
 
