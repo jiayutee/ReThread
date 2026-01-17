@@ -1,3 +1,94 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "item-1",
+      "description": "Vintage denim jacket with patches",
+      "imageUrl": "https://images.unsplash.com/photo-1608147152875-b0eb0c53d491?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxkZW5pbSUyMGphY2tldHxlbnwwfHx8fDE3Njg2MDczMzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "denim jacket"
+    },
+    {
+      "id": "item-2",
+      "description": "Floral summer dress",
+      "imageUrl": "https://images.unsplash.com/photo-1509755512670-9e7af886e7e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdW1tZXIlMjBkcmVzc3xlbnwwfHx8fDE3Njg2MzY2OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "summer dress"
+    },
+    {
+      "id": "item-3",
+      "description": "Leather ankle boots",
+      "imageUrl": "https://images.unsplash.com/photo-1605812860427-4024433a70fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsZWF0aGVyJTIwYm9vdHN8ZW58MHx8fHwxNzY4NTkzMTM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather boots"
+    },
+    {
+      "id": "item-4",
+      "description": "Striped cotton t-shirt",
+      "imageUrl": "https://images.unsplash.com/photo-1767164520704-fc2a44498a11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3RyaXBlZCUyMHNoaXJ0fGVufDB8fHx8MTc2ODY1MDQ0NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "striped shirt"
+    },
+    {
+      "id": "item-5",
+      "description": "High-waisted skinny jeans",
+      "imageUrl": "https://images.unsplash.com/photo-1600785381373-703ca5953d42?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxza2lubnklMjBqZWFuc3xlbnwwfHx8fDE3Njg1NzU0MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "skinny jeans"
+    },
+    {
+      "id": "item-6",
+      "description": "Wool knit sweater",
+      "imageUrl": "https://images.unsplash.com/photo-1646270968322-51cbdeaa6cde?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxrbml0JTIwc3dlYXRlcnxlbnwwfHx8fDE3Njg2NjkxMjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "knit sweater"
+    },
+    {
+      "id": "item-7",
+      "description": "Canvas tote bag",
+      "imageUrl": "https://images.unsplash.com/photo-1630381259916-72321f3bafe0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0b3RlJTIwYmFnfGVufDB8fHx8MTc2ODU4ODQ3MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tote bag"
+    },
+    {
+      "id": "item-8",
+      "description": "Vintage sunglasses",
+      "imageUrl": "https://images.unsplash.com/photo-1759227922040-0ca4d3cbe42e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdW5nbGFzc2VzJTIwZmFzaGlvbnxlbnwwfHx8fDE3Njg2Mzg1MDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sunglasses fashion"
+    },
+    {
+      "id": "user-1",
+      "description": "Profile picture for user JaneDoe",
+      "imageUrl": "https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2ODY1NzkwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "user-2",
+      "description": "Profile picture for user JohnSmith",
+      "imageUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3Njg1NzI1MTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "user-3",
+      "description": "Profile picture for user EmilyWhite",
+      "imageUrl": "https://images.unsplash.com/photo-1607529378676-a20456ee2f6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwZXJzb24lMjBzbWlsaW5nfGVufDB8fHx8MTc2ODYzNzM4MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person smiling"
+    },
+    {
+      "id": "item-9",
+      "description": "A-line skirt",
+      "imageUrl": "https://images.unsplash.com/photo-1551163943-3f6a855d1153?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZmFzaGlvbiUyMHNraXJ0fGVufDB8fHx8MTc2ODY2OTEyNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fashion skirt"
+    },
+    {
+      "id": "item-10",
+      "description": "Classic trench coat",
+      "imageUrl": "https://images.unsplash.com/photo-1573545289441-827c028f7a3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx0cmVuY2glMjBjb2F0fGVufDB8fHx8MTc2ODYzNDY1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "trench coat"
+    },
+    {
+      "id": "item-11",
+      "description": "White sneakers",
+      "imageUrl": "https://images.unsplash.com/photo-1625860191460-10a66c7384fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3aGl0ZSUyMHNuZWFrZXJzfGVufDB8fHx8MTc2ODYwODk2OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "white sneakers"
+    },
+    {
+      "id": "item-12",
+      "description": "Leather crossbody bag",
+      "imageUrl": "https://images.unsplash.com/photo-1613482184972-f9c1022d0928?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsZWF0aGVyJTIwYmFnfGVufDB8fHx8MTc2ODU3OTY3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather bag"
+    }
+  ]
 }
