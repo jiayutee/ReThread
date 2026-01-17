@@ -32,9 +32,11 @@ export function Header() {
             </form>
           </div>
           <Button variant="ghost" size="sm" className="hidden sm:inline-flex">Browse</Button>
-          <Button size="sm">
-            <PlusCircle className="mr-2 h-4 w-4" />
-            Sell
+          <Button asChild size="sm">
+            <Link href="/sell">
+              <PlusCircle className="mr-2 h-4 w-4" />
+              Sell
+            </Link>
           </Button>
           <UserNav />
         </div>
