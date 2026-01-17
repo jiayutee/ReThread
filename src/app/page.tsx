@@ -11,8 +11,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [allItems, setAllItems] = useState<ItemWithSeller[]>([]);
-  const [sortedItems, setSortedItems] = useState<ItemWithSeller[]>([]);
+  const [displayItems, setDisplayItems] = useState<ItemWithSeller[]>([]);
   const [sortOption, setSortOption] = useState('newest');
+  const [filters, setFilters] = useState<{ category: string[], condition: string[] }>({
+    category: [],
+    condition: [],
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +40,16 @@ export default function Home() {
 
   useEffect(() => {
     let items = [...allItems];
+    
+    // Apply filters
+    if (filters.category.length > 0) {
+      items = items.filter(item => filters.category.includes(item.category));
+    }
+    if (filters.condition.length > 0) {
+        items = items.filter(item => filters.condition.includes(item.condition));
+    }
+
+    // Apply sorting
     switch (sortOption) {
       case 'price-asc':
         items.sort((a, b) => {
@@ -68,12 +82,29 @@ export default function Home() {
     }
     // The 'distance' sort option is not implemented as location data is not available for calculation.
     if (sortOption !== 'distance') {
-        setSortedItems(items);
+        setDisplayItems(items);
     }
-  }, [sortOption, allItems]);
+  }, [sortOption, allItems, filters]);
   
   const handleSortChange = (value: string) => {
     setSortOption(value);
+  };
+
+  const handleFilterChange = (
+    type: 'category' | 'condition', 
+    value: string
+  ) => {
+    setFilters(prevFilters => {
+      const currentValues = prevFilters[type];
+      const newValues = currentValues.includes(value)
+        ? currentValues.filter(v => v !== value)
+        : [...currentValues, value];
+      
+      return {
+        ...prevFilters,
+        [type]: newValues,
+      };
+    });
   };
 
   return (
@@ -87,7 +118,11 @@ export default function Home() {
         </p>
       </div>
 
-      <ItemFilters onSortChange={handleSortChange} />
+      <ItemFilters 
+        onSortChange={handleSortChange} 
+        filters={filters}
+        onFilterChange={handleFilterChange}
+      />
 
       <PersonalizedItems allItems={allItems} />
 
@@ -107,7 +142,7 @@ export default function Home() {
             </div>
         ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {sortedItems.map((item) => (
+                {displayItems.map((item) => (
                     <ItemCard key={item.id} item={item} />
                 ))}
             </div>

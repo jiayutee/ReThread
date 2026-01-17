@@ -5,8 +5,21 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuCheckboxItem, DropdownMe
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SlidersHorizontal, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import type { Item } from "@/lib/types";
 
-export function ItemFilters({ onSortChange }: { onSortChange: (value: string) => void }) {
+const CATEGORIES: Item['category'][] = ['Tops', 'Bottoms', 'Dresses', 'Outerwear', 'Accessories', 'Shoes'];
+const CONDITIONS: Item['condition'][] = ['New with tags', 'Like new', 'Gently used', 'Used'];
+
+interface ItemFiltersProps {
+  onSortChange: (value: string) => void;
+  filters: {
+    category: string[];
+    condition: string[];
+  };
+  onFilterChange: (type: 'category' | 'condition', value: string) => void;
+}
+
+export function ItemFilters({ onSortChange, filters, onFilterChange }: ItemFiltersProps) {
   const { toast } = useToast();
 
   const handleSortChange = (value: string) => {
@@ -40,19 +53,27 @@ export function ItemFilters({ onSortChange }: { onSortChange: (value: string) =>
           <DropdownMenuContent className="w-56">
             <DropdownMenuLabel>Category</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuCheckboxItem>Tops</DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem>Bottoms</DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem>Dresses</DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem>Outerwear</DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem>Accessories</DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem>Shoes</DropdownMenuCheckboxItem>
+            {CATEGORIES.map(category => (
+                <DropdownMenuCheckboxItem
+                    key={category}
+                    checked={filters.category.includes(category)}
+                    onCheckedChange={() => onFilterChange('category', category)}
+                >
+                    {category}
+                </DropdownMenuCheckboxItem>
+            ))}
             <DropdownMenuSeparator />
             <DropdownMenuLabel>Condition</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuCheckboxItem>New with tags</DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem>Like new</DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem>Gently used</DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem>Used</DropdownMenuCheckboxItem>
+            {CONDITIONS.map(condition => (
+                <DropdownMenuCheckboxItem
+                    key={condition}
+                    checked={filters.condition.includes(condition)}
+                    onCheckedChange={() => onFilterChange('condition', condition)}
+                >
+                    {condition}
+                </DropdownMenuCheckboxItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
          <Button variant="outline" onClick={comingSoon}>
