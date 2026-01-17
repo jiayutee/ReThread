@@ -1,55 +1,17 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
 import { BrainCircuit } from 'lucide-react';
 
-import { personalizedRecommendations } from '@/ai/flows/personalized-recommendations';
 import { ItemCard } from './item-card';
 import type { ItemWithSeller } from '@/lib/types';
 import { Skeleton } from './ui/skeleton';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 interface PersonalizedItemsProps {
-  allItems: ItemWithSeller[];
+  recommendations: ItemWithSeller[];
+  loading: boolean;
 }
 
-export function PersonalizedItems({ allItems }: PersonalizedItemsProps) {
-  const [recommendations, setRecommendations] = useState<ItemWithSeller[]>([]);
-  const [loading, setLoading] = useState(true);
-  const recommendationsFetched = useRef(false);
-
-  useEffect(() => {
-    async function getRecommendations() {
-      setLoading(true);
-      try {
-        const input = {
-          browsingHistory: ['item-5', 'item-4'], // Mock browsing history
-          savedSearches: ['denim', 'vintage jacket'], // Mock saved searches
-          userProfile: {
-            userId: 'user-1',
-            location: 'San Francisco, CA',
-            stylePreferences: ['vintage', 'casual'],
-            sizePreferences: ['M', '28'],
-          },
-          availableItems: allItems.map(item => item.id),
-        };
-
-        const result = await personalizedRecommendations(input);
-        const recommendedItems = allItems.filter(item => result.recommendedItems.includes(item.id));
-        setRecommendations(recommendedItems);
-      } catch (error) {
-        console.error("Failed to get personalized recommendations:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    if (allItems.length > 0 && !recommendationsFetched.current) {
-      recommendationsFetched.current = true;
-      getRecommendations();
-    } else if (allItems.length === 0) {
-      setLoading(false);
-    }
-  }, [allItems]);
+export function PersonalizedItems({ recommendations, loading }: PersonalizedItemsProps) {
 
   if (loading) {
     return (
@@ -58,14 +20,25 @@ export function PersonalizedItems({ allItems }: PersonalizedItemsProps) {
           <BrainCircuit className="w-6 h-6 text-primary" />
           <h2 className="text-2xl font-headline text-foreground">Just For You</h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="space-y-2">
-              <Skeleton className="h-[400px] w-full" />
-              <Skeleton className="h-6 w-3/4" />
-              <Skeleton className="h-5 w-1/4" />
-            </div>
-          ))}
+        <div className="relative">
+          <Carousel
+            opts={{
+              align: "start",
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {[...Array(4)].map((_, i) => (
+                <CarouselItem key={i} className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="p-1 space-y-2">
+                    <Skeleton className="h-[400px] w-full rounded-lg" />
+                    <Skeleton className="h-6 w-3/4" />
+                    <Skeleton className="h-5 w-1/4" />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </section>
     );
@@ -84,7 +57,7 @@ export function PersonalizedItems({ allItems }: PersonalizedItemsProps) {
         <Carousel
           opts={{
             align: "start",
-            loop: true,
+            loop: recommendations.length > 3,
           }}
           className="w-full"
         >

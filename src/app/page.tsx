@@ -7,6 +7,7 @@ import { PersonalizedItems } from "@/components/personalized-items";
 import { getItems, getUsers } from "@/lib/data";
 import type { ItemWithSeller } from "@/lib/types";
 import { Skeleton } from "@/components/ui/skeleton";
+import { personalizedRecommendations } from "@/ai/flows/personalized-recommendations";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -17,6 +18,8 @@ export default function Home() {
     category: [],
     condition: [],
   });
+  const [recommendations, setRecommendations] = useState<ItemWithSeller[]>([]);
+  const [recsLoading, setRecsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +36,34 @@ export default function Home() {
       
       setAllItems(itemsWithSeller);
       setLoading(false);
+
+      if (itemsWithSeller.length > 0) {
+        setRecsLoading(true);
+        try {
+          const input = {
+            browsingHistory: ['item-5', 'item-4'], // Mock browsing history
+            savedSearches: ['denim', 'vintage jacket'], // Mock saved searches
+            userProfile: {
+              userId: 'user-1',
+              location: 'San Francisco, CA',
+              stylePreferences: ['vintage', 'casual'],
+              sizePreferences: ['M', '28'],
+            },
+            availableItems: itemsWithSeller.map(item => item.id),
+          };
+
+          const result = await personalizedRecommendations(input);
+          const recommendedItems = itemsWithSeller.filter(item => result.recommendedItems.includes(item.id));
+          setRecommendations(recommendedItems);
+        } catch (error) {
+          console.error("Failed to get personalized recommendations:", error);
+          setRecommendations([]);
+        } finally {
+          setRecsLoading(false);
+        }
+      } else {
+        setRecsLoading(false);
+      }
     };
 
     fetchData();
@@ -124,7 +155,7 @@ export default function Home() {
         onFilterChange={handleFilterChange}
       />
 
-      <PersonalizedItems allItems={allItems} />
+      <PersonalizedItems recommendations={recommendations} loading={recsLoading} />
 
       <section aria-labelledby="all-items-heading">
         <div className="flex items-center justify-between mb-4">
