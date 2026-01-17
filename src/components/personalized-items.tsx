@@ -18,6 +18,7 @@ export function PersonalizedItems({ allItems }: PersonalizedItemsProps) {
 
   useEffect(() => {
     async function getRecommendations() {
+      setLoading(true);
       try {
         const input = {
           browsingHistory: ['item-5', 'item-4'], // Mock browsing history
@@ -41,7 +42,11 @@ export function PersonalizedItems({ allItems }: PersonalizedItemsProps) {
       }
     }
 
-    getRecommendations();
+    if (allItems.length > 0) {
+      getRecommendations();
+    } else {
+      setLoading(false);
+    }
   }, [allItems]);
 
   if (loading) {
