@@ -8,7 +8,7 @@ import {
   Flag,
 } from "lucide-react";
 
-import { getItem, getUser } from "@/lib/data";
+import { getItem, getUser, getItems } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import type { ImageMap } from "@/lib/types";
 import {
@@ -145,4 +145,11 @@ export default async function ItemPage({ params }: { params: { id: string } }) {
       </div>
     </div>
   );
+}
+
+export async function generateStaticParams() {
+    const items = await getItems();
+    return items.map(item => ({
+        id: item.id,
+    }));
 }

@@ -223,8 +223,8 @@ export const getUsers = async (): Promise<User[]> => {
   return Promise.resolve(users);
 }
 
-export const getUser = async (username: string): Promise<User | undefined> => {
-  return Promise.resolve(users.find(user => user.username.toLowerCase() === username.toLowerCase()));
+export const getUser = async (identifier: string): Promise<User | undefined> => {
+  return Promise.resolve(users.find(user => user.username.toLowerCase() === identifier.toLowerCase() || user.id === identifier));
 }
 
 export const getItemsBySeller = async (sellerId: string): Promise<Item[]> => {

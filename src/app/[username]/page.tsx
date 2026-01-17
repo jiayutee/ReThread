@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MapPin, ShieldCheck } from "lucide-react";
-import { getUser, getItemsBySeller } from "@/lib/data";
+import { getUser, getItemsBySeller, getUsers } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import type { ImageMap, User } from "@/lib/types";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
