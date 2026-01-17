@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { BrainCircuit } from 'lucide-react';
 
 import { personalizedRecommendations } from '@/ai/flows/personalized-recommendations';
@@ -15,6 +15,7 @@ interface PersonalizedItemsProps {
 export function PersonalizedItems({ allItems }: PersonalizedItemsProps) {
   const [recommendations, setRecommendations] = useState<ItemWithSeller[]>([]);
   const [loading, setLoading] = useState(true);
+  const recommendationsFetched = useRef(false);
 
   useEffect(() => {
     async function getRecommendations() {
@@ -42,9 +43,10 @@ export function PersonalizedItems({ allItems }: PersonalizedItemsProps) {
       }
     }
 
-    if (allItems.length > 0) {
+    if (allItems.length > 0 && !recommendationsFetched.current) {
+      recommendationsFetched.current = true;
       getRecommendations();
-    } else {
+    } else if (allItems.length === 0) {
       setLoading(false);
     }
   }, [allItems]);
