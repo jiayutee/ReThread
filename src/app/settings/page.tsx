@@ -65,7 +65,7 @@ export default function SettingsPage() {
                 <CardDescription>
                 Manage your account settings.
                 </CardDescription>
-            </Header>
+            </CardHeader>
             <CardContent className="space-y-4">
                  <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
