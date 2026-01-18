@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Card,
   CardContent,
@@ -63,7 +65,7 @@ export default function SettingsPage() {
                 <CardDescription>
                 Manage your account settings.
                 </CardDescription>
-            </CardHeader>
+            </Header>
             <CardContent className="space-y-4">
                  <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
