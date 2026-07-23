@@ -7,7 +7,6 @@ import { PersonalizedItems } from "@/components/personalized-items";
 import { getItems, getUsers } from "@/lib/data";
 import type { ItemWithSeller } from "@/lib/types";
 import { Skeleton } from "@/components/ui/skeleton";
-import { personalizedRecommendations } from "@/ai/flows/personalized-recommendations";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -40,20 +39,12 @@ export default function Home() {
       if (itemsWithSeller.length > 0) {
         setRecsLoading(true);
         try {
-          const input = {
-            browsingHistory: ['item-5', 'item-4'], // Mock browsing history
-            savedSearches: ['denim', 'vintage jacket'], // Mock saved searches
-            userProfile: {
-              userId: 'user-1',
-              location: 'San Francisco, CA',
-              stylePreferences: ['vintage', 'casual'],
-              sizePreferences: ['M', '28'],
-            },
-            availableItems: itemsWithSeller.map(item => item.id),
-          };
-
-          const result = await personalizedRecommendations(input);
-          const recommendedItems = itemsWithSeller.filter(item => result.recommendedItems.includes(item.id));
+          const recommendedItems = [...itemsWithSeller]
+            .sort(
+              (a, b) =>
+                new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            )
+            .slice(0, 8);
           setRecommendations(recommendedItems);
         } catch (error) {
           console.error("Failed to get personalized recommendations:", error);
