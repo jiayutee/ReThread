@@ -1,8 +1,14 @@
 import type {NextConfig} from 'next';
 
+const isProduction = process.env.NODE_ENV === 'production';
+const repoName = 'ReThread';
+
 const nextConfig: NextConfig = {
   /* config options here */
   output: 'export',  // Enable static export
+  basePath: isProduction ? `/${repoName}` : '',
+  assetPrefix: isProduction ? `/${repoName}/` : undefined,
+  trailingSlash: true,
   typescript: {
     ignoreBuildErrors: true,
   },
